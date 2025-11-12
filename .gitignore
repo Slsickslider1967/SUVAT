@@ -1,0 +1,33 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio/VSCode
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs and caches
+*.log
+*.cache/
+
+# Test results
+TestResults/
+
+# NuGet packages (if using packages folder)
+packages/
+
+# Rider/IDEA
+.idea/
+
+# Resharper
+_ReSharper*/
+
+# DotCover
+*.dotCover
+
+# Temporary files
+~$*
+*.tmp
