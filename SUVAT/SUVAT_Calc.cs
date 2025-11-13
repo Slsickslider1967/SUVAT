@@ -15,15 +15,15 @@ namespace Project
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Please enter the known values (enter 'x' for wanted, leave blank for unknown):");
 
-                Console.Write("Displacement (S): ");
+                Console.Write("Displacement (S / m): ");
                 var s = TryIntParse(Console.ReadLine());
-                Console.Write("Initial Velocity (U): ");
+                Console.Write("Initial Velocity (U / m/s): ");
                 var u = TryIntParse(Console.ReadLine());
-                Console.Write("Final Velocity (V): ");
+                Console.Write("Final Velocity (V / m/s): ");
                 var v = TryIntParse(Console.ReadLine());
-                Console.Write("Acceleration (A): ");
+                Console.Write("Acceleration (A / m/s^2): ");
                 var a = TryIntParse(Console.ReadLine());
-                Console.Write("Time (T): ");
+                Console.Write("Time (T / s): ");
                 var t = TryIntParse(Console.ReadLine());
 
                 Equations equation = new Equations(s ?? float.NaN, u ?? float.NaN, v ?? float.NaN, a ?? float.NaN, t ?? float.NaN);

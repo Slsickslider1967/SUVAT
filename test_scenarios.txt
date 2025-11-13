@@ -1,0 +1,33 @@
+Test Scenarios for SUVAT Calculator:
+
+Test 1: Calculate S (using u, t, a)
+Input: S=x, U=10, V=blank, A=2, T=5
+Expected: S = ut + 0.5at² = 10×5 + 0.5×2×25 = 50 + 25 = 75 m
+
+Test 2: Calculate S (using v, t, a)  
+Input: S=x, U=blank, V=20, A=2, T=5
+Expected: S = vt - 0.5at² = 20×5 - 0.5×2×25 = 100 - 25 = 75 m
+
+Test 3: Calculate S (using u, v, t)
+Input: S=x, U=10, V=20, A=blank, T=5
+Expected: S = 0.5(u+v)t = 0.5×(10+20)×5 = 0.5×30×5 = 75 m
+
+Test 4: Calculate S (using u, v, a)
+Input: S=x, U=10, V=20, A=2, T=blank
+Expected: S = (v²-u²)/(2a) = (400-100)/(2×2) = 300/4 = 75 m
+
+Test 5: Calculate U (using s, t, a)
+Input: S=75, U=x, V=blank, A=2, T=5
+Expected: U = (s - 0.5at²)/t = (75 - 0.5×2×25)/5 = (75-25)/5 = 10 m/s
+
+Test 6: Calculate V (using u, a, t)
+Input: S=blank, U=10, V=x, A=2, T=5
+Expected: V = u + at = 10 + 2×5 = 20 m/s
+
+Test 7: Calculate A (using v, u, t)
+Input: S=blank, U=10, V=20, A=x, T=5
+Expected: A = (v-u)/t = (20-10)/5 = 2 m/s²
+
+Test 8: Calculate T (using v, u, a)
+Input: S=blank, U=10, V=20, A=2, T=x
+Expected: T = (v-u)/a = (20-10)/2 = 5 s
