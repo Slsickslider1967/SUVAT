@@ -15,15 +15,15 @@ namespace Project
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("Please enter the known values (enter 'x' for wanted, leave blank for unknown):");
 
-                Console.Write("Displacement (S / m): ");
+                Console.Write("Displacement (S in m): ");
                 var s = TryIntParse(Console.ReadLine());
-                Console.Write("Initial Velocity (U / m/s): ");
+                Console.Write("Initial Velocity (U in m/s): ");
                 var u = TryIntParse(Console.ReadLine());
-                Console.Write("Final Velocity (V / m/s): ");
+                Console.Write("Final Velocity (V in m/s): ");
                 var v = TryIntParse(Console.ReadLine());
-                Console.Write("Acceleration (A / m/s^2): ");
+                Console.Write("Acceleration (A in m/s²): ");
                 var a = TryIntParse(Console.ReadLine());
-                Console.Write("Time (T / s): ");
+                Console.Write("Time (T in s): ");
                 var t = TryIntParse(Console.ReadLine());
 
                 Equations equation = new Equations(s ?? float.NaN, u ?? float.NaN, v ?? float.NaN, a ?? float.NaN, t ?? float.NaN);
@@ -140,27 +140,25 @@ namespace Project
             if (!float.IsNaN(Values[Variables.S]) && !float.IsNaN(Values[Variables.T]) && !float.IsNaN(Values[Variables.A]))
             {
                 result = (Values[Variables.S] - 0.5f * Values[Variables.A] * Values[Variables.T] * Values[Variables.T]) / Values[Variables.T];
-                Console.WriteLine($"Calculated Initial Velocity (U): {result} m/s");
             }
             else if (!float.IsNaN(Values[Variables.V]) && !float.IsNaN(Values[Variables.A]) && !float.IsNaN(Values[Variables.T]))
             {
                 result = Values[Variables.V] - Values[Variables.A] * Values[Variables.T];
-                Console.WriteLine($"Calculated Initial Velocity (U): {result} m/s");
             }
             else if (!float.IsNaN(Values[Variables.S]) && !float.IsNaN(Values[Variables.V]) && !float.IsNaN(Values[Variables.T]))
             {
                 result = (2 * Values[Variables.S] / Values[Variables.T]) - Values[Variables.V];
-                Console.WriteLine($"Calculated Initial Velocity (U): {result} m/s");
             }
             else if (!float.IsNaN(Values[Variables.V]) && !float.IsNaN(Values[Variables.A]) && !float.IsNaN(Values[Variables.S]))
             {
                 result = (float)Math.Sqrt(Values[Variables.V] * Values[Variables.V] - 2 * Values[Variables.A] * Values[Variables.S]);
-                Console.WriteLine($"Calculated Initial Velocity (U): {result} m/s");
             }
             else
             {
                 Console.WriteLine("Insufficient data to calculate Initial Velocity (U).");
             }
+
+            Console.WriteLine($"Calculated Initial Velocity (U): {result} m/s");
         }
 
         public void CalculateV()
@@ -168,22 +166,22 @@ namespace Project
             if (!float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.A]) && !float.IsNaN(Values[Variables.T]))
             {
                 result = Values[Variables.U] + Values[Variables.A] * Values[Variables.T];
-                Console.WriteLine($"Calculated Final Velocity (V): {result} m/s");
             }
             else if (!float.IsNaN(Values[Variables.S]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.T]))
             {
                 result = (2 * Values[Variables.S] / Values[Variables.T]) - Values[Variables.U];
-                Console.WriteLine($"Calculated Final Velocity (V): {result} m/s");
             }
             else if (!float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.A]) && !float.IsNaN(Values[Variables.S]))
             {
                 result = (float)Math.Sqrt(Values[Variables.U] * Values[Variables.U] + 2 * Values[Variables.A] * Values[Variables.S]);
-                Console.WriteLine($"Calculated Final Velocity (V): {result} m/s");
             }
             else
             {
                 Console.WriteLine("Insufficient data to calculate Final Velocity (V).");
             }
+
+            
+            Console.WriteLine($"Calculated Final Velocity (V): {result} m/s");
         }
 
         public void CalculateA()
@@ -191,22 +189,22 @@ namespace Project
             if (!float.IsNaN(Values[Variables.V]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.T]))
             {
                 result = (Values[Variables.V] - Values[Variables.U]) / Values[Variables.T];
-                Console.WriteLine($"Calculated Acceleration (A): {result} m/s²");
             }
             else if (!float.IsNaN(Values[Variables.S]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.T]))
             {
                 result = (2 * (Values[Variables.S] - Values[Variables.U] * Values[Variables.T])) / (Values[Variables.T] * Values[Variables.T]);
-                Console.WriteLine($"Calculated Acceleration (A): {result} m/s²");
             }
             else if (!float.IsNaN(Values[Variables.V]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.S]))
             {
                 result = (Values[Variables.V] * Values[Variables.V] - Values[Variables.U] * Values[Variables.U]) / (2 * Values[Variables.S]);
-                Console.WriteLine($"Calculated Acceleration (A): {result} m/s²");
             }
             else
             {
                 Console.WriteLine("Insufficient data to calculate Acceleration (A).");
             }
+
+        
+            Console.WriteLine($"Calculated Acceleration (A): {result} m/s²");
         }
 
         public void CalculateT()
@@ -214,7 +212,6 @@ namespace Project
             if (!float.IsNaN(Values[Variables.V]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.A]))
             {
                 result = (Values[Variables.V] - Values[Variables.U]) / Values[Variables.A];
-                Console.WriteLine($"Calculated Time (T): {result} s");
             }
             else if (!float.IsNaN(Values[Variables.S]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.A]))
             {
@@ -228,17 +225,18 @@ namespace Project
                 float t1 = (-Values[Variables.U] + sqrtDiscriminant) / Values[Variables.A];
                 float t2 = (-Values[Variables.U] - sqrtDiscriminant) / Values[Variables.A];
                 result = Math.Max(t1, t2);
-                Console.WriteLine($"Calculated Time (T): {result} s");
             }
             else if (!float.IsNaN(Values[Variables.S]) && !float.IsNaN(Values[Variables.U]) && !float.IsNaN(Values[Variables.V]))
             {
                 result = (2 * Values[Variables.S]) / (Values[Variables.U] + Values[Variables.V]);
-                Console.WriteLine($"Calculated Time (T): {result} s");
             }
             else
             {
                 Console.WriteLine("Insufficient data to calculate Time (T).");
             }
+
+        
+            Console.WriteLine($"Calculated Time (T): {result} s");
         }
     }
 }
